@@ -1,0 +1,115 @@
+1:php artisan make:migration create_category_table
+      ##have##
+      <?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('category', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('category');
+    }
+};
+
+      ##END HAVE##
+2:php artisan make:migration create_posts_table 
+      ##have##
+      <?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('body');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('category');
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('posts');
+    }
+};
+
+      ##END HAVE##
+3:php artisan make:model Category   
+      ##have##
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Category extends Model
+{
+    protected $fillable = ['name'];
+    protected $table = 'category';
+
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+}
+
+      ##END HAVE##
+4:php artisam make:model Post
+      ##have##
+      <?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
+{
+    protected $fillable = ['title', 'body', 'category_id'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+}
+
+      ##END HAVE##
+6:php artsan migrate  
+7:php artisan db:wipe   
+8:php artisan tinker 
+    1:$post = new App\Models\Post; 
+    2:$post->title = 'Mon premier post';     
+    3:$post->body = 'Contenu du post';                                                                                                                  
+    4:$post->category_id = $category->id; 
+    5:$post->save(); 
+//
+//
+//
+//
+
+
