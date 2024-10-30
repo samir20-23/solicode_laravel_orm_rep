@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
  */
+// e
+// x
+// a
+// m
+// p
+// l
+// e
 class CategoryFactory extends Factory
 {
     protected $model = Category::class;
