@@ -1,5 +1,6 @@
 ___________________(TUTORIAL NUMBER 5 'database write  databse content  ')_________________
-#############################################################
+
+################################################################################################
 
 
 
@@ -156,3 +157,4 @@ return new class extends Migration
                                        ##END have##
 9:php artisan migrate
 10:php artisan db:seed --class=CategoriesTableSeeder
+
