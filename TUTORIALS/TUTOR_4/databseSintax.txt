@@ -107,3 +107,9 @@ class Post extends Model
     3:$post->body = 'Contenu du post';                                                                                                                  
     4:$post->category_id = $category->id; 
     5:$post->save(); 
+//
+//
+//
+//
+
+
