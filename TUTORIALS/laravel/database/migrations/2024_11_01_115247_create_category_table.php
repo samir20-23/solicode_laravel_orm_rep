@@ -9,17 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('category', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable(); // Add this line if missing
-            $table->boolean('is_active')->default(true); // Add this line if missing
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */
@@ -28,4 +26,3 @@ return new class extends Migration
         Schema::dropIfExists('category');
     }
 };
-
